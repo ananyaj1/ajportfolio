@@ -1,0 +1,27 @@
+.conveyerbelt {
+  display: flex;
+  gap: 2rem;
+  white-space: nowrap;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.conveyerbelt .item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.conveyerbelt img {
+  height: 1em;
+  width: auto;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
