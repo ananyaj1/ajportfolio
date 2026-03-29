@@ -1,8 +1,8 @@
 import "@/assets/css/Belt.css";
 import database from "@/assets/database.svg";
-import develop from "@/assets/database.svg";
-import pattern from "@/assets/database.svg";
-import system from "@/assets/database.svg";
+import develop from "@/assets/develop.svg";
+import pattern from "@/assets/pattern.svg";
+import system from "@/assets/system.svg";
 import reactlogo from "@/assets/react.svg";
 import figmalogo from "@/assets/figma.svg";
 
