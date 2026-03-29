@@ -1,6 +1,6 @@
-import "@/App.css";
-import Navbar from "./Navbar";
-import Belt from "./Belt";
+import "@/assets/css/App.css";
+import Navbar from "@/components/Navbar";
+import Belt from "@/components/Belt";
 
 const App = () => {
   return (
