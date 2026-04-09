@@ -1,40 +1,33 @@
-import { useState } from "react";
-import "@/assets/css/Navbar.css";
+import styles from "@/assets/css/Navbar.module.css";
+import type { JSX } from "react";
+import type { Section } from "@/types/GenericType";
 
-const Navbar = () => {
-  const [selected, setSelected] = useState("about");
+type NavbarProps = {
+  selected: Section;
+  onSelect: (section: Section) => void;
+};
 
-  const getItemClass = (name: string) =>
-    `item ${selected === name ? "active" : ""}`;
-
-  const handleSelection = (section: string) => {
-    setSelected(section);
-  };
+const Navbar = ({ selected, onSelect }: NavbarProps): JSX.Element => {
+  const getItemClass = (name: Section) =>
+    `${styles.item} ${selected === name ? styles.active : ""}`;
 
   return (
-    <div className="navbar">
-      <button
-        className={getItemClass("about")}
-        onClick={() => handleSelection("about")}
-      >
-        about me
-      </button>
-
-      <button
-        className={getItemClass("work")}
-        onClick={() => handleSelection("work")}
-      >
+    <div className={styles.navbar}>
+      <button className={getItemClass("work")} onClick={() => onSelect("work")}>
         work
       </button>
 
       <button
-        className={getItemClass("play")}
-        onClick={() => handleSelection("play")}
+        className={getItemClass("about")}
+        onClick={() => onSelect("about")}
       >
+        about me
+      </button>
+
+      <button className={getItemClass("play")} onClick={() => onSelect("play")}>
         play
       </button>
     </div>
   );
 };
-
 export default Navbar;

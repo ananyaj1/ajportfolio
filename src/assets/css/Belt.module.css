@@ -3,6 +3,8 @@
   gap: 2rem;
   white-space: nowrap;
   width: max-content;
+  padding: 2%;
+  font-size: large;
   animation: scroll 30s linear infinite;
 }
 

@@ -1,0 +1,23 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  background: #efefef;
+  border: 0.2rem solid black;
+  box-sizing: border-box;
+}
+
+.navbar .item {
+  width: 100%;
+  padding: 0.5rem 0;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.active {
+  background-color: black;
+  color: white;
+}

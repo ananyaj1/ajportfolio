@@ -1,25 +1,14 @@
-import "@/assets/css/Belt.css";
-import database from "@/assets/database.svg";
-import develop from "@/assets/develop.svg";
-import pattern from "@/assets/pattern.svg";
-import system from "@/assets/system.svg";
-import reactlogo from "@/assets/react.svg";
-import figmalogo from "@/assets/figma.svg";
+import styles from "@/assets/css/Belt.module.css";
+import type { JSX } from "react";
+import { footerItems } from "@/constants/Layers";
+import type { FooterItem } from "@/types/GenericType";
 
-const Belt = () => {
-  const footerItems = [
-    { label: "Frontend Development", icon: develop },
-    { label: "Backend Development", icon: pattern },
-    { label: "API Design", icon: system },
-    { label: "UI Design", icon: figmalogo },
-    { label: "Data Pipelines", icon: database },
-    { label: "Component Architecture", icon: reactlogo },
-  ];
-  const repeatedItems = [...footerItems, ...footerItems];
+const Belt = (): JSX.Element => {
+  const repeatedItems: FooterItem[] = [...footerItems, ...footerItems];
   return (
-    <div className="conveyerbelt">
+    <div className={styles.conveyerbelt}>
       {repeatedItems.map((item, i) => (
-        <div className="item" key={i}>
+        <div className={styles.item} key={i}>
           {item.label} <img src={item.icon} />
         </div>
       ))}
