@@ -3,35 +3,30 @@ import styles from "@/assets/css/App.module.css";
 import Navbar from "@/components/Navbar";
 import Belt from "@/components/Belt";
 import type { JSX } from "react";
-import Project from "@/components/Project";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Section } from "@/types/GenericType";
 import wrench from "@/assets/icons/wrench.svg";
+import Work from "@/pages/Work";
 
 const App = (): JSX.Element => {
   const [selected, setSelected] = useState<Section>(Section.WORK);
+  const contentRef = useRef<HTMLElement | null>(null);
+
+  const handleSelect = (section: Section) => {
+    setSelected(section);
+
+    requestAnimationFrame(() => {
+      contentRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  };
 
   const renderSection = () => {
     switch (selected) {
       case Section.WORK:
-        return (
-          <section className={`${styles.content_section} ${styles.work}`}>
-            <div className={styles.work_intro}>
-              <p className={styles.work_eyebrow}>Portfolio</p>
-              <h1 className={styles.page_title}>PROJECT WORK.</h1>
-              <p className={styles.page_subtitle}>
-                Selected work from my career across backend systems, AI
-                workflows, and product development.
-              </p>
-            </div>
-
-            <Project />
-            <div className="coming_soon">
-              <p className="coming_soon_text">Coming Soon</p>
-              <img src={wrench} alt="" />
-            </div>
-          </section>
-        );
+        return <Work />;
 
       case Section.ABOUT:
         return (
@@ -60,7 +55,7 @@ const App = (): JSX.Element => {
 
   return (
     <div className={styles.wrapper}>
-      <Navbar selected={selected} onSelect={setSelected} />
+      <Navbar selected={selected} onSelect={handleSelect} />
 
       <section className={styles.landing}>
         <div className={styles.bio}>
@@ -80,7 +75,9 @@ const App = (): JSX.Element => {
         </div>
       </section>
 
-      <main className={styles.page_content}>{renderSection()}</main>
+      <main ref={contentRef} className={styles.page_content}>
+        {renderSection()}
+      </main>
     </div>
   );
 };

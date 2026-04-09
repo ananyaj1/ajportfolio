@@ -15,7 +15,7 @@ type LayerPanelProps = {
 const LayerPanel = ({ layer }: LayerPanelProps) => {
   return (
     <div className={styles.pl_panel} key={layer.label}>
-      <h2 className={styles.pl_title}>{`${layer.label} Layer`}</h2>
+      <h2 className={styles.pl_title}>{layer.label}</h2>
       <p className={styles.pl_sub}>{layer.subtitle}</p>
 
       <div className={styles.pl_tags}>

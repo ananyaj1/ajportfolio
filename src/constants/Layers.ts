@@ -7,10 +7,11 @@ import system from "@/assets/icons/system.svg";
 import reactlogo from "@/assets/icons/react.svg";
 import figmalogo from "@/assets/icons/figma.svg";
 
-export const LAYERS: Layer[] = [
+export const CALL_PROJECT_LAYERS: Layer[] = [
   {
     id: "ingestion",
-    label: "Ingestion",
+    label: "Ingestion Layer",
+    tab: "Ingestion",
     subtitle: "Distributed Call Intake",
     stack: ["Python", "AWS S3", "REST APIs"],
     summary:
@@ -25,7 +26,8 @@ export const LAYERS: Layer[] = [
   },
   {
     id: "processing",
-    label: "Processing",
+    label: "Processing Layer",
+    tab: "Processing",
     subtitle: "Reconciliation & Consistency",
     stack: ["Python", "MySQL", "CFML"],
     summary:
@@ -40,7 +42,8 @@ export const LAYERS: Layer[] = [
   },
   {
     id: "intelligence",
-    label: "Intelligence",
+    label: "Intelligence Layer",
+    tab: "Intelligence",
     subtitle: "AI Transcript Processing",
     stack: ["AWS Bedrock", "MySQL", "Python"],
     summary:
@@ -55,7 +58,8 @@ export const LAYERS: Layer[] = [
   },
   {
     id: "storage",
-    label: "Storage",
+    label: "Storage Layer",
+    tab: "Storage",
     subtitle: "Hot Storage & Compliant Archival",
     stack: ["S3", "Global Relay", "MySQL"],
     summary:
@@ -70,7 +74,8 @@ export const LAYERS: Layer[] = [
   },
   {
     id: "application",
-    label: "Application",
+    label: "Application Layer",
+    tab: "Application",
     subtitle: "React / TypeScript Dashboard",
     stack: ["React", "TypeScript", "REST API"],
     summary:
@@ -84,6 +89,21 @@ export const LAYERS: Layer[] = [
     ],
   },
 ];
+
+export const PLATFORM_MODERNIZATION_LAYER = {
+  id: "platform",
+  label: "Platform Modernization",
+  subtitle: "Legacy Migration & Architecture",
+  stack: ["React", "TypeScript", "Tanstack Query", "REST APIs"],
+  summary:
+    "Led the architectural pitch and ongoing migration off a legacy CFML stack, introducing a modular UI library, standardized backend repository patterns, and the first fully end-to-end implementation of the new architecture.",
+  bullets: [
+    "Architected and championed the migration strategy to a decoupled React/RESTful stack",
+    "Built reusable hooks and TanStack Query abstractions for form state and API interactions — 30% reduction in frontend boilerplate",
+    "Defined strongly-typed request/entity models, centralized error handling, and scalable CRUD patterns",
+    "Delivered the first end-to-end feature on the new architecture, establishing patterns for the team",
+  ],
+};
 
 export const footerItems: FooterItem[] = [
   { label: "end-to-end page design & delivery", icon: develop },

@@ -5,4 +5,5 @@ export type Layer = {
   stack: string[];
   summary: string;
   bullets: string[];
+  tab?: string;
 };
