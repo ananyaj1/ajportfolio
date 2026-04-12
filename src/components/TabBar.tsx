@@ -14,20 +14,22 @@ type TabBarProps = {
 
 const TabBar = ({ tabs, active, onChange }: TabBarProps): JSX.Element => {
   return (
-    <div className={styles.tabs}>
-      <div className={styles.tabs__inner}>
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            type="button"
-            className={`${styles.tab} ${
-              tab.id === active ? styles.tab__active : ""
-            }`}
-            onClick={() => onChange(tab.id)}
-          >
-            {tab.label}
-          </button>
-        ))}
+    <div className={styles.tabs_wrap}>
+      <div className={styles.tabs}>
+        <div className={styles.tabs__inner}>
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              className={`${styles.tab} ${
+                tab.id === active ? styles.tab__active : ""
+              }`}
+              onClick={() => onChange(tab.id)}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

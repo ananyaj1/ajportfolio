@@ -4,9 +4,11 @@ import Navbar from "@/components/Navbar";
 import Belt from "@/components/Belt";
 import type { JSX } from "react";
 import { useRef, useState } from "react";
-import { Section } from "@/types/GenericType";
+import { Section } from "@/types/Layout";
 import wrench from "@/assets/icons/wrench.svg";
 import Work from "@/pages/Work";
+import { CAREER_TIMELINE } from "@/constants/Layers";
+import CareerTimeline from "@/pages/Timeline";
 
 const App = (): JSX.Element => {
   const [selected, setSelected] = useState<Section>(Section.WORK);
@@ -29,14 +31,7 @@ const App = (): JSX.Element => {
         return <Work />;
 
       case Section.ABOUT:
-        return (
-          <section className={`${styles.content_section} ${styles.about}`}>
-            <div className={`coming_soon ${styles.empty_page}`}>
-              <p className="coming_soon_text">Coming Soon</p>
-              <img src={wrench} alt="" />
-            </div>
-          </section>
-        );
+        return <CareerTimeline timeline={CAREER_TIMELINE} />;
 
       case Section.PLAY:
         return (

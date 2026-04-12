@@ -1,6 +1,6 @@
 import styles from "@/assets/css/Navbar.module.css";
 import type { JSX } from "react";
-import type { Section } from "@/types/GenericType";
+import type { Section } from "@/types/Layout";
 
 type NavbarProps = {
   selected: Section;
