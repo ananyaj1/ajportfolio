@@ -1,0 +1,398 @@
+.content {
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.25rem;
+}
+
+.intro p {
+  color: #616161;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.gallery {
+  --frame-width: clamp(8rem, calc(50svh - 13rem), 15rem);
+  background: #edeae7;
+  border: 1px solid #dad5d0;
+}
+
+.viewport {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem max(0px, calc((100% - var(--frame-width)) / 2)) 1.25rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.viewport[data-dragging] {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.frame {
+  flex: 0 0 var(--frame-width);
+  min-width: 0;
+  margin: 0;
+  scroll-snap-align: center;
+  opacity: 0.44;
+  transition: opacity 250ms ease;
+}
+
+.selected {
+  opacity: 1;
+}
+
+.preview {
+  position: relative;
+  aspect-ratio: 390 / 780;
+  overflow: hidden;
+  background: #32121b;
+  border: 1px solid #75202b;
+  border-radius: 3px;
+  box-shadow: 0 0.5625rem 1.1875rem #24130d29;
+}
+
+.screen {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: contain;
+  user-select: none;
+}
+
+.open_frame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: 0.75rem;
+  cursor: inherit;
+}
+
+.open_frame span {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  color: #111;
+  background: #fff;
+  border: 1px solid #ddd;
+  opacity: 0;
+  transition: opacity 150ms;
+}
+
+.selected .open_frame span,
+.open_frame:focus-visible span {
+  opacity: 1;
+}
+
+.gallery_bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.875rem;
+  padding: 0.875rem 1.25rem;
+  background: #fff;
+  border-top: 1px solid #dad5d0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.8125rem;
+}
+
+.arrow {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  border: 1px solid #d4d4d4;
+  border-radius: 50%;
+  color: #111;
+  background: #fff;
+}
+
+.arrow:hover {
+  border-color: #111;
+}
+
+.current_page {
+  min-width: 7.5rem;
+}
+
+.frame_name {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.count {
+  color: #616161;
+  font: 0.6875rem var(--mono);
+  margin-top: 0.25rem;
+}
+
+.text_link,
+.source_link {
+  color: #616161;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.text_link {
+  min-height: 2.75rem;
+}
+
+.project_bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.625rem;
+  margin-top: 1.5625rem;
+}
+
+.project_title {
+  margin: 0 0 0.625rem;
+  color: #111;
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+
+.description {
+  max-width: 33rem;
+  color: #484848;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stack li {
+  padding: 0.25rem 0.5625rem;
+  border: 1px solid #ddd;
+  color: #666;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  text-transform: lowercase;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.6875rem;
+  min-width: 9.8125rem;
+}
+
+.launch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.9375rem;
+  padding: 0.8125rem 1.0625rem;
+  border: 1px solid #111;
+  color: #fff;
+  background: #111;
+  font-size: 0.8125rem;
+  text-decoration: none;
+}
+
+.launch:hover {
+  background: #333;
+}
+
+.source_link {
+  align-self: flex-start;
+  padding: 0.375rem 0;
+}
+
+.design_details {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+}
+
+.design_details summary {
+  width: fit-content;
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  list-style: none;
+}
+
+.design_details summary::-webkit-details-marker {
+  display: none;
+}
+
+.design_details summary::after {
+  content: "+";
+}
+
+.design_details[open] summary::after {
+  content: "−";
+}
+
+.details_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5625rem;
+  margin-top: 0.75rem;
+  padding-top: 1.4375rem;
+  border-top: 1px solid #bcbcbc;
+}
+
+.details_grid h3 {
+  margin: 0 0 0.4375rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.details_grid p {
+  color: #616161;
+  line-height: 1.7;
+}
+
+.dialog {
+  width: min(27rem, calc(100vw - 2rem));
+  max-width: none;
+  max-height: calc(100dvh - 2rem);
+  padding: 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.dialog::backdrop {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.dialog_content {
+  padding: 1rem;
+  background: white;
+}
+
+.dialog_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.dialog_header h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  font-size: 1.5rem;
+}
+
+.dialog_note {
+  margin-top: 1rem;
+  color: #666;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.content button:focus-visible,
+.content a:focus-visible,
+.design_details summary:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 4px;
+}
+
+.open_frame:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -5px;
+}
+
+@media (max-width: 40rem) {
+  .gallery {
+    --frame-width: min(100%, clamp(8rem, calc(50svh - 15rem), 15rem));
+  }
+
+  .intro {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .gallery_bar {
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    padding: 0.75rem;
+  }
+
+  .current_page {
+    min-width: 6.5rem;
+  }
+
+  .controls {
+    gap: 0.5625rem;
+  }
+
+  .project_bottom {
+    grid-template-columns: 1fr;
+    gap: 1.125rem;
+  }
+
+  .actions {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 24rem) {
+  .details_grid {
+    grid-template-columns: 1fr;
+    gap: 1.0625rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame,
+  .open_frame span {
+    transition: none;
+  }
+}
