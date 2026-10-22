@@ -4,10 +4,22 @@ personal portfolio website showcasing my journey & work. built in react, typescr
 
 live at: https://ananyaj1.github.io/ajportfolio/
 
-The Play gallery displays current Girl Math screenshots from `public/play/screenshots/`.
+The Play section features On the Ball and Girl Math. On the Ball links to
+https://on-the-ball-phi.vercel.app/discover and includes its planned login,
+persistent follows, and dedicated artists page. Its screenshots show artists
+marked as followed in Discover and a populated Following feed. They were captured from the local app and live
+in `public/play/screenshots/on-the-ball/`. Both projects share the same swipeable
+gallery and full-size preview.
+
+The Girl Math gallery displays current screenshots from `public/play/screenshots/`.
 Visitors can swipe through the pages or open a larger screenshot. The live demo
 opens separately at https://girl-math-plum.vercel.app/; the portfolio
 does not embed the Girl Math app. Its demo URL lives in `src/features/play/data/gallery.ts`.
+
+Both projects are deployed on Vercel and use the same `GalleryProject` structure
+in `src/features/play/data/gallery.ts`: project name, demo URL, GitHub URL,
+screenshot note, theme, and frames. Their separate components read this shared
+data structure for gallery settings and links.
 
 ## Project organization
 

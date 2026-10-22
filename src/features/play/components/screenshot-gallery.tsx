@@ -1,10 +1,23 @@
 import { useEffect, useId, useRef, useState } from "react";
-import { GIRL_MATH_FRAMES, girlMathScreenshotSrc } from "../data/gallery";
+import {
+  screenshotSrc,
+  type GalleryFrame,
+  type GalleryProject,
+} from "../data/gallery";
 import styles from "./play.module.css";
 
-type GalleryFrame = (typeof GIRL_MATH_FRAMES)[number];
+type ScreenshotGalleryProps = Pick<
+  GalleryProject,
+  "projectName" | "frames" | "note" | "theme"
+>;
 
-const ScreenshotGallery = () => {
+const ScreenshotGallery = ({
+  projectName,
+  frames,
+  note,
+  theme,
+}: ScreenshotGalleryProps) => {
+  const previewClass = `${styles.preview} ${theme === "cream" ? styles.cream_preview : ""}`;
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [openFrame, setOpenFrame] = useState<GalleryFrame | null>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -14,7 +27,7 @@ const ScreenshotGallery = () => {
   const draggedRef = useRef(false);
   const dialogTitleId = useId();
   const galleryId = useId();
-  const selectedFrame = GIRL_MATH_FRAMES[selectedIndex];
+  const selectedFrame = frames[selectedIndex];
 
   useEffect(() => {
     if (openFrame && !dialogRef.current?.open) dialogRef.current?.showModal();
@@ -63,8 +76,7 @@ const ScreenshotGallery = () => {
 
   const selectFrame = (index: number) => {
     const gallery = galleryRef.current;
-    const nextIndex =
-      (index + GIRL_MATH_FRAMES.length) % GIRL_MATH_FRAMES.length;
+    const nextIndex = (index + frames.length) % frames.length;
     const frame = gallery?.querySelectorAll<HTMLElement>(
       "[data-gallery-frame]",
     )[nextIndex];
@@ -91,7 +103,7 @@ const ScreenshotGallery = () => {
         className={styles.gallery}
         role="region"
         aria-roledescription="carousel"
-        aria-label="Girl Math pages"
+        aria-label={`${projectName} pages`}
         onKeyDown={(event) => {
           if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
             event.preventDefault();
@@ -150,19 +162,19 @@ const ScreenshotGallery = () => {
             }
           }}
         >
-          {GIRL_MATH_FRAMES.map((frame, index) => (
+          {frames.map((frame, index) => (
             <figure
               key={frame.screen}
               data-gallery-frame
               className={`${styles.frame} ${index === selectedIndex ? styles.selected : ""}`}
               role="group"
               aria-roledescription="slide"
-              aria-label={`${frame.label}, ${index + 1} of ${GIRL_MATH_FRAMES.length}`}
+              aria-label={`${frame.label}, ${index + 1} of ${frames.length}`}
             >
-              <div className={styles.preview}>
+              <div className={previewClass}>
                 <img
-                  src={girlMathScreenshotSrc(frame.image)}
-                  alt={`Girl Math ${frame.label} page with sample data`}
+                  src={screenshotSrc(frame.image)}
+                  alt={`${projectName} ${frame.label} page`}
                   className={styles.screen}
                   loading={index === 0 ? "eager" : "lazy"}
                   width={780}
@@ -194,7 +206,7 @@ const ScreenshotGallery = () => {
             <button
               type="button"
               className={styles.arrow}
-              aria-label="Previous Girl Math page"
+              aria-label={`Previous ${projectName} page`}
               aria-controls={galleryId}
               onClick={() => selectFrame(selectedIndex - 1)}
             >
@@ -207,13 +219,13 @@ const ScreenshotGallery = () => {
             >
               <p className={styles.frame_name}>{selectedFrame.label}</p>
               <p className={styles.count}>
-                {selectedIndex + 1} / {GIRL_MATH_FRAMES.length}
+                {selectedIndex + 1} / {frames.length}
               </p>
             </div>
             <button
               type="button"
               className={styles.arrow}
-              aria-label="Next Girl Math page"
+              aria-label={`Next ${projectName} page`}
               aria-controls={galleryId}
               onClick={() => selectFrame(selectedIndex + 1)}
             >
@@ -251,10 +263,10 @@ const ScreenshotGallery = () => {
             </button>
           </header>
           {openFrame && (
-            <div className={styles.preview}>
+            <div className={previewClass}>
               <img
-                src={girlMathScreenshotSrc(openFrame.image)}
-                alt={`Girl Math ${openFrame.label} page with sample data`}
+                src={screenshotSrc(openFrame.image)}
+                alt={`${projectName} ${openFrame.label} page`}
                 className={styles.screen}
                 width={780}
                 height={1560}
@@ -262,7 +274,8 @@ const ScreenshotGallery = () => {
             </div>
           )}
           <p className={styles.dialog_note}>
-            Sample data{openFrame?.status ? ` · ${openFrame.status}` : ""}
+            {note}
+            {openFrame?.status ? ` · ${openFrame.status}` : ""}
           </p>
         </div>
       </dialog>

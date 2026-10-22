@@ -1,6 +1,14 @@
 .content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3.5rem;
   max-width: 64rem;
   margin: 0 auto;
+}
+
+.content > article + article {
+  padding-top: 3.5rem;
+  border-top: 1px solid #ddd;
 }
 
 .intro {
@@ -64,6 +72,11 @@
   border: 1px solid #75202b;
   border-radius: 3px;
   box-shadow: 0 0.5625rem 1.1875rem #24130d29;
+}
+
+.cream_preview {
+  background: #f7f5ed;
+  border-color: #c8c5bd;
 }
 
 .screen {
@@ -284,6 +297,10 @@
   line-height: 1.7;
 }
 
+.next_steps {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .dialog {
   width: min(27rem, calc(100vw - 2rem));
   max-width: none;
@@ -349,6 +366,11 @@
 }
 
 @media (max-width: 40rem) {
+  .next_steps {
+    grid-template-columns: 1fr;
+    gap: 1.0625rem;
+  }
+
   .gallery {
     --frame-width: min(100%, clamp(8rem, calc(50svh - 15rem), 15rem));
   }
